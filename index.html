@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Am I</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Lobster&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            background: url("R (6).jpg");
+            /* background-size: 290vh; */
+            background-size: cover;
+            /* background: linear-gradient(65deg, rgb(0, 113, 178), rgb(255, 255, 255)); */
+        }
+
+        .main-box {
+            height: 80vh;
+            width: 80vw;
+            /* border: 1px solid white; */
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            margin-top: 3vh;
+
+        }
+
+        .latitude {
+            font-size: 4vh;
+            text-align: center;
+            padding: 2vh 3vh;
+            border-radius: 2vh;
+            border: none;
+            outline: none;
+            background: url("R (4).jpg");
+            background-size: 150vh;
+            color: white;
+            box-shadow: 1px 2px 10px 5px rgb(0, 0, 0);
+
+        }
+
+        .latitude::placeholder {
+            color: rgb(255, 255, 255);
+        }
+
+        .longitude {
+            margin-left: 3vh;
+            font-size: 4vh;
+            text-align: center;
+            padding: 2vh 3vh;
+            border-radius: 2vh;
+            border: none;
+            outline: none;
+            background: url("R (4).jpg");
+            background-size: 150vh;
+            color: white;
+            /* border: 5px dashed rgb(0, 0, 0); */
+            box-shadow: 1px 2px 10px 5px rgb(0, 0, 0);
+
+        }
+
+        .longitude::placeholder {
+            color: rgb(255, 255, 255);
+        }
+
+        .ok {
+            font-size: 4vh;
+            text-align: center;
+            padding: 1vh 2vh;
+            border-radius: 2vh;
+            border: none;
+            cursor: pointer;
+            /* background-color: rgb(0, 0, 0); */
+            background: linear-gradient(45deg, rgb(48, 5, 68), rgb(139, 148, 141));
+            /* background: url("3D Abstract 8.jpg"); */
+            background-size: 40vh;
+            color: white;
+            transition: .3s;
+            /* box-shadow: 1px 2px 5px 1px rgb(255, 255, 255) */
+        }
+
+        .but {
+            margin-top: 3vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .info {
+            /* height: 30vh; */
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            /* width: 60vh; */
+            /* border: 1px solid black; */
+            color: rgb(0, 0, 0);
+            /* text-shadow: 2px white; */
+            background-color: rgb(255, 255, 255);
+            border-radius: 3vh;
+            line-height: 5vh;
+            margin: auto;
+            margin-top: 5vh;
+            font-size: 3vh;
+            text-align: center;
+            padding: 4vh 6vh;
+            opacity: 0;
+            box-shadow: 1px 0px 10px 1px rgb(0, 0, 0);
+
+        }
+
+        .img {
+            opacity: 1;
+            transition: 0.7s;
+            /* margin-top: 5vh; */
+
+        }
+
+        .image {
+            display: flex;
+            justify-content: center;
+            /* margin-top: 20vh; */
+        }
+
+        .roll {
+            height: 6vh;
+            width: 6vh;
+            border: 1vh solid transparent;
+            border-radius: 10vh;
+            animation: go 0.6s forwards infinite ease-in-out;
+            margin: auto;
+            margin-top: 3vh;
+            display: none;
+
+        }
+
+        @keyframes go {
+            0% {
+                border-top: 1vh solid rgb(255, 255, 255);
+            }
+
+            25% {
+                border-right: 1vh solid rgb(255, 255, 255);
+            }
+
+            50% {
+                border-bottom: 1vh solid rgb(255, 255, 255);
+            }
+
+            100% {
+                border-left: 1vh solid rgb(255, 255, 255);
+            }
+        }
+
+        .askBox {
+            display: flex;
+            justify-content: center;
+            margin-top: 5vh;
+            /* box-sizing: border-box; */
+            /* opacity: 1; */
+            transition: 0.5s;
+            /* display: none; */
+        }
+
+        .askInfo {
+            font-size: 3vh;
+            font-weight: 600;
+            background-color: rgb(255, 255, 255);
+            /* padding: 1vh 5vh; */
+            /* height: 4vh; */
+            width: 100vw;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border-radius: 3vh; */
+
+            /* box-shadow: 1px 2px 5px 10px rgb(255, 255, 255) */
+
+
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .yes {
+            font-size: 4vh;
+            /* padding: 1vh 3vh; */
+            height: 8vh;
+            width: 15vh;
+            border-radius: 5vh;
+            border: none;
+            margin: 5vh;
+            background-color: rgb(1, 63, 1);
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 1px 2px 5px 1px rgb(255, 255, 255)
+        }
+
+        .no {
+            font-size: 4vh;
+            height: 8vh;
+            width: 15vh;
+            /* padding: 1vh 3vh; */
+            border-radius: 5vh;
+            border: none;
+            margin: 5vh;
+            background-color: rgb(115, 0, 0);
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 1px 2px 5px 1px rgb(255, 255, 255)
+        }
+
+        .shrink {
+            /* transition: 0.3s; */
+            transform: scale(0.7);
+        }
+
+        .nav {
+            position: absolute;
+            width: 100%;
+            height: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: rgba(255, 255, 255, 0.54); */
+            background-image: url("R (6).jpg");
+            transition: 0.4s;
+            cursor: pointer;
+            background-size: 178vh;
+        }
+
+        /* .nav:hover{
+                background-image: url("R (6).jpg");
+                background-size: 220vh;
+            } */
+
+        .text {
+            font-size: 5vh;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: 0.2vh;
+            margin-left: 3vh;
+            font-family: 'Lemon', serif;
+            font-family: 'Lobster', sans-serif;
+        }
+
+        @media screen and (max-width:900px) {
+            .latitude {
+                font-size: 2.5vw;
+                text-align: center;
+                padding: 2vh 3vh;
+            }
+
+            .longitude {
+                font-size: 2.5vw;
+                text-align: center;
+                padding: 2vh 3vh;
+            }
+
+            .ok {
+                font-size: 3vw;
+            }
+
+            .askInfo {
+                font-size: 2.5vw;
+            }
+
+            .info {
+                line-height: 5vh;
+                margin: auto;
+                margin-top: 5vh;
+                font-size: 2vh;
+                text-align: center;
+                padding: 2vh 4vh;
+            }
+
+            .yes {
+                font-size: 3vh;
+                /* padding: 1vh 3vh; */
+                height: 6vh;
+                width: 10vh;
+                margin: 3vh;
+            }
+
+            .no {
+                font-size: 3vh;
+                /* padding: 1vh 3vh; */
+                height: 6vh;
+                width: 10vh;
+                margin: 3vh;
+            }
+
+            @media screen and (max-width:500px) {
+                .box {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    /* align-items: center; */
+                }
+
+                .latitude {
+                    font-size: 5vw;
+                    text-align: center;
+                    padding: 2vh 3vh;
+                }
+
+                .longitude {
+                    font-size: 5vw;
+                    text-align: center;
+                    padding: 2vh 3vh;
+                    margin-left: 0vh;
+                    margin-top: 5vh;
+                }
+
+                .ok {
+                    font-size: 3vw;
+                }
+
+                .askInfo {
+                    font-size: 5vw;
+                    /* border: 2px solid black; */
+
+                }
+
+                .info {
+                    line-height: 4vh;
+                    margin: auto;
+                    margin-top: 5vh;
+                    font-size: 2vh;
+                    text-align: center;
+                    padding: 1vh 1vh;
+                }
+
+                .yes {
+                    font-size: 2vh;
+                    /* padding: 1vh 3vh; */
+                    height: 5vh;
+                    width: 8vh;
+                    margin: 2vh;
+                }
+
+                .no {
+                    font-size: 2vh;
+                    /* padding: 1vh 3vh; */
+                    height: 5vh;
+                    width: 8vh;
+                    margin: 2vh;
+                }
+            }
+
+            .nav {
+                position: absolute;
+                width: 100%;
+                height: 8vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* background-color: rgba(255, 255, 255, 0.54); */
+                background-image: url("R (5).jpg");
+                transition: 0.4s;
+                cursor: pointer;
+                background-size: 70vh;
+            }
+
+            .nav:hover {
+                background-image: url("R (6).jpg");
+                background-size: 180vh;
+            }
+
+            .text {
+                font-size: 5vh;
+                font-weight: 700;
+                font-family: monospace;
+                letter-spacing: 0.2vh;
+                margin-left: 3vh;
+                font-family: 'Lemon', serif;
+                font-family: 'Lobster', sans-serif;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <p class="text">Where Am I</p>
+    </div>
+    <div class="container">
+        <div class="main-box">
+
+            <div class="box">
+                <input type="text" placeholder="Enter latitude here" class="latitude">
+                <input type="text" placeholder="Enter longitude here" class="longitude">
+
+            </div>
+
+            <div class="but">
+                <button class="ok">Get country name</button>
+            </div>
+
+
+            <p class="roll"></p>
+            <div class="askBox">
+                <div class="ask">
+                    <p class="askInfo">Do you want information about your current location?</p>
+                    <div class="buttons">
+                        <button class="yes">Yes</button>
+                        <button class="no">No</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="info">
+                <div class="image">
+                    <img class="img" src="https://flagcdn.com/w160/in.png" alt="Country's Flag">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
